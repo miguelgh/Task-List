@@ -1,0 +1,9 @@
+<button 
+    class="btn" 
+    [ngStyle]="{'background-color':color}" 
+    (click)="onClick()"
+    >
+    {{text}}
+</button>
+<!--[ngStyle] nos permite modificar el estilo de la etiqueta, en este caso entre corchetes {} para que tome la variable "color", que viene por Input desde el template "<app-button color="green" text="add task"></app-button>"-->
+<!--Con el evento (click) se llama a la función "onClick()" que fue creada la lógina en el "button.component.ts"-->
