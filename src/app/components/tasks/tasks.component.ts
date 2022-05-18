@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-//se importan la interface task y el array de mock-task
+//se importa el servicio que tiene el array TASKS con las tareas escritas como base de datos
+import { TaskService } from 'src/app/service/task.service';
+//se importa "Task" que tiene la interfase del array (id,nombre,fecha,etc)
 import { Task } from 'src/app/task';
-import { TASKS } from 'src/app/mock-task';
+
 
 @Component({
   selector: 'app-tasks',
@@ -11,11 +13,18 @@ import { TASKS } from 'src/app/mock-task';
 export class TasksComponent implements OnInit {
 
   //se cargan en el componente, guardando en la variable "tasks" con la intefaz "Task[]" el array TASK
-  tasks: Task[] = TASKS;
+  tasks: Task[] = [];
 
-  constructor() { }
+  constructor(
+    //se crea inicia el servicio
+    private taskService: TaskService
+  ) { }
 
   ngOnInit(): void {
+    //cuando arranca el componente (ngOnInit), guarda en "tasks", las tareas que viene del servicio que tiene el array TASKS
+    this.taskService.getTasks().subscribe((tasks)=>(
+      this.tasks=tasks
+    ));
   }
 
 }
